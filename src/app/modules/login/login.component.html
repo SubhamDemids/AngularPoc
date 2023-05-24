@@ -15,7 +15,7 @@
                   >
                   
                 <mat-icon matSuffix>perm_identity</mat-icon>
-                <mat-error *ngIf="myForm.controls['firstname'].invalid && myForm.controls['firstname'].touched">
+                <mat-error *ngIf="isSubmitClicked || myForm.controls['firstname'].invalid || myForm.controls['firstname'].touched">
                   First Name is required
                 </mat-error>
               </mat-form-field>
@@ -27,7 +27,7 @@
                   required
                   name="username">
                 <mat-icon matSuffix>perm_identity</mat-icon>
-                <mat-error *ngIf="myForm.controls['lastname'].invalid && myForm.controls['lastname'].touched">
+                <mat-error *ngIf="isSubmitClicked || myForm.controls['lastname'].invalid || myForm.controls['lastname'].touched">
                   Last Name is required
                 </mat-error>
               </mat-form-field>
@@ -41,7 +41,9 @@
                 >
                
                 <mat-icon matSuffix>email</mat-icon>
-                <mat-error *ngIf="myForm.controls['email'].invalid && myForm.controls['email'].touched">Email or Phone Number is required</mat-error>
+                <mat-error *ngIf="isSubmitClicked || myForm.controls['email'].invalid || myForm.controls['email'].touched">
+                  Email or Phone Number is required
+                </mat-error>
               </mat-form-field>
               <mat-form-field>
                 <input
@@ -65,17 +67,18 @@
                   name="repassword"
                   >
                 <mat-icon matSuffix>lock</mat-icon>
-                <mat-error *ngIf="myForm.controls['confirmPassword'].hasError('required')">
+                <mat-error *ngIf="isSubmitClicked || myForm.controls['confirmPassword'].hasError('required')">
                   Confirm Password is required
                 </mat-error>
-                <mat-error  *ngIf="myForm.controls['confirmPassword'].hasError('passwordMismatch')">
+                <mat-error  *ngIf=" myForm.controls['confirmPassword'].hasError('passwordMismatch')">
                   Passwords do not match
                 </mat-error>  
               </mat-form-field>
               <button
                 mat-raised-button
                 color="primary"
-                class="login-button">
+                class="login-button"
+                (click)="onSubmit()">
                 Sign Up
               </button>
             </form>
@@ -83,20 +86,25 @@
         </mat-tab>
         <mat-tab label="Sign In">
             <mat-card-content>
-              <form action="">
+              <form [formGroup]="myForm">
                 <mat-form-field>
                   <input
                     matInput
+                    formControlName="signinemail"
                     placeholder="Email/Phone Number"
                     required
                     name="email"
                     >
-                    <mat-error >Email is required</mat-error>
+                   
                   <mat-icon matSuffix>email</mat-icon>
+                  <mat-error *ngIf="isSubmitClicked || myForm.controls['signinemail'].invalid && myForm.controls['signinemail'].touched">
+                    Email or Phone Number is required
+                  </mat-error>
                 </mat-form-field>
                 <mat-form-field>
                   <input
                     matInput
+                    formControlName="signinpassword"
                     placeholder="Password"
                     type="password"
                     required
@@ -104,11 +112,15 @@
                     name="password"
                    >
                   <mat-icon matSuffix>lock</mat-icon>
+                  <mat-error *ngIf="isSubmitClicked || myForm.controls['signinpassword'].invalid && myForm.controls['signinpassword'].touched">
+                    Password is required
+                  </mat-error>
                 </mat-form-field>
                 <button
                   mat-raised-button
                   color="primary"
-                  class="login-button">
+                  class="login-button"
+                  (click)="onSubmit()">
                   Sign In
                 </button>
               </form>

@@ -8,7 +8,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit{
   myForm!: FormGroup
-
+  isSubmitClicked = false;
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
@@ -35,6 +35,15 @@ export class LoginComponent implements OnInit{
     } else {
       confirmPasswordControl?.setErrors(null);
     }
+  }
+  onSubmit() {
+    this.isSubmitClicked = true;
+
+    if (this.myForm.invalid) {
+      return;
+    }
+
+   
   }
 
 }
