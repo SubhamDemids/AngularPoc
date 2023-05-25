@@ -7,35 +7,46 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit{
-  myForm!: FormGroup
+  signUpForm!: FormGroup
+  signInForm!: FormGroup
   isSubmitClicked = false;
   constructor(private formBuilder: FormBuilder) {
 
-    this.myForm = this.formBuilder.group({
+    this.signUpForm = this.formBuilder.group({
       email: '',
       password:''
     });
+    
+    this.signInForm = this.formBuilder.group({
+      signinemail: '',
+      signinpassword:''
+    });
+
   }
 
   ngOnInit() {
-    this.myForm = this.formBuilder.group({
+    this.signUpForm = this.formBuilder.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
       confirmPassword: ['', [Validators.required]],
-      signinemail:['', [Validators.required]],
-      signinpassword: ['', [Validators.minLength(5)]],
     },
     {
       validators: this.passwordMatchValidator
     }
     );
+
+    this.signInForm=this.formBuilder.group({
+      signinemail:['', [Validators.required]],
+      signinpassword: ['', [Validators.required]],
+    })
+
   }
   passwordMatchValidator(formGroup: FormGroup) {
     const passwordControl = formGroup.get('password');
     const confirmPasswordControl = formGroup.get('confirmPassword');
-
+   
     if (passwordControl?.value !== confirmPasswordControl?.value) {
       confirmPasswordControl?.setErrors({ passwordMismatch: true });
     } else {
@@ -44,21 +55,21 @@ export class LoginComponent implements OnInit{
   }
   onSignUp() {
     this.isSubmitClicked = true;
-    if (this.myForm.invalid) {
-      const email = this.myForm.get('email')?.value;
-      const password = this.myForm.get('password')?.value;
-      localStorage.setItem('email', email);
-      localStorage.setItem('password', password);
+    if (this.signUpForm.valid) {
+      const signUpEmail = this.signUpForm.get('email')?.value;
+      const signUpPassword = this.signUpForm.get('password')?.value;
+      localStorage.setItem('email', signUpEmail);
+      localStorage.setItem('password',signUpPassword);
     }  
   }
   onSignIn(){
-    const email = this.myForm.get('signinemail')?.value;
-    const password = this.myForm.get('signinpassword')?.value;
+    const signInEmail = this.signInForm.get('signinemail')?.value;
+    const signInPassword = this.signInForm.get('signinpassword')?.value;
 
     const storedEmail = localStorage.getItem('email');
-    const storedPassword = localStorage.getItem('password');
+    const storedPassword = localStorage.getItem('password')
 
-    if (email === storedEmail && password === storedPassword) {
+    if (signInEmail === storedEmail && signInPassword === storedPassword) {
      console.log("Authentication sucesss")
     } else {
       console.log('Authentication failed');
