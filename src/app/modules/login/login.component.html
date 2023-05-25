@@ -4,16 +4,14 @@
       <mat-tab-group >
         <mat-tab label="Sign Up">
           <mat-card-content>
-            <form [formGroup]="myForm" >
+            <form [formGroup]="myForm" (ngSubmit)="onSignUp()">
               <mat-form-field>
                 <input
                   matInput
                   formControlName="firstname"
                   placeholder="First Name"
                   required
-                  name="username"
                   >
-                  
                 <mat-icon matSuffix>perm_identity</mat-icon>
                 <mat-error *ngIf="isSubmitClicked || myForm.controls['firstname'].invalid || myForm.controls['firstname'].touched">
                   First Name is required
@@ -25,7 +23,7 @@
                   formControlName="lastname"
                   placeholder="Last Name"
                   required
-                  name="username">
+                  >
                 <mat-icon matSuffix>perm_identity</mat-icon>
                 <mat-error *ngIf="isSubmitClicked || myForm.controls['lastname'].invalid || myForm.controls['lastname'].touched">
                   Last Name is required
@@ -36,10 +34,8 @@
                   matInput
                   formControlName="email"
                   placeholder="Email/Phone Number"
-                  required
-                  name="email"
+                  required 
                 >
-               
                 <mat-icon matSuffix>email</mat-icon>
                 <mat-error *ngIf="isSubmitClicked || myForm.controls['email'].invalid || myForm.controls['email'].touched">
                   Email or Phone Number is required
@@ -50,7 +46,7 @@
                   matInput
                   formControlName="password"
                   placeholder="Password"
-                  name="password"
+                  
                  >
                   
                 <mat-icon matSuffix>lock</mat-icon>
@@ -63,11 +59,10 @@
                   matInput
                   formControlName="confirmPassword"
                   placeholder="Confirm Password"
-                  type="password"
-                  name="repassword"
+                  type="password"               
                   >
                 <mat-icon matSuffix>lock</mat-icon>
-                <mat-error *ngIf="isSubmitClicked || myForm.controls['confirmPassword'].hasError('required')">
+                <mat-error *ngIf="isSubmitClicked && myForm.controls['confirmPassword'].hasError('required')">
                   Confirm Password is required
                 </mat-error>
                 <mat-error  *ngIf=" myForm.controls['confirmPassword'].hasError('passwordMismatch')">
@@ -78,7 +73,8 @@
                 mat-raised-button
                 color="primary"
                 class="login-button"
-                (click)="onSubmit()">
+              
+                >
                 Sign Up
               </button>
             </form>
@@ -86,14 +82,12 @@
         </mat-tab>
         <mat-tab label="Sign In">
             <mat-card-content>
-              <form [formGroup]="myForm">
+              <form [formGroup]="myForm"  (ngSubmit)="onSignIn()">
                 <mat-form-field>
                   <input
                     matInput
                     formControlName="signinemail"
-                    placeholder="Email/Phone Number"
-                    required
-                    name="email"
+                    placeholder="Email/Phone Number"               
                     >
                    
                   <mat-icon matSuffix>email</mat-icon>
@@ -106,10 +100,7 @@
                     matInput
                     formControlName="signinpassword"
                     placeholder="Password"
-                    type="password"
-                    required
-                    minlength="6"
-                    name="password"
+                    type="password"            
                    >
                   <mat-icon matSuffix>lock</mat-icon>
                   <mat-error *ngIf="isSubmitClicked || myForm.controls['signinpassword'].invalid && myForm.controls['signinpassword'].touched">
@@ -120,13 +111,12 @@
                   mat-raised-button
                   color="primary"
                   class="login-button"
-                  (click)="onSubmit()">
+                  >
                   Sign In
                 </button>
               </form>
             </mat-card-content>
         </mat-tab>
-        
       </mat-tab-group>
     </mat-card>
   </div>
