@@ -1,29 +1,21 @@
-import { Component,OnInit} from '@angular/core';
-import { Router } from '@angular/router';
+import { Component,OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css']
 })
-export class LoginComponent implements OnInit{
+export class SignupComponent  implements OnInit{
   signUpForm!: FormGroup
-  signInForm!: FormGroup
   isSubmitClicked = false;
+
   constructor(private formBuilder: FormBuilder) {
 
     this.signUpForm = this.formBuilder.group({
       email: '',
       password:''
     });
-    
-    this.signInForm = this.formBuilder.group({
-      signinemail: '',
-      signinpassword:''
-    });
-
   }
-
   ngOnInit() {
     this.signUpForm = this.formBuilder.group({
       firstname: ['', Validators.required],
@@ -36,12 +28,6 @@ export class LoginComponent implements OnInit{
       validators: this.passwordMatchValidator
     }
     );
-
-    this.signInForm=this.formBuilder.group({
-      signinemail:['', [Validators.required]],
-      signinpassword: ['', [Validators.required]],
-    })
-
   }
   passwordMatchValidator(formGroup: FormGroup) {
     const passwordControl = formGroup.get('password');
@@ -62,18 +48,4 @@ export class LoginComponent implements OnInit{
       localStorage.setItem('password',signUpPassword);
     }  
   }
-  onSignIn(){
-    const signInEmail = this.signInForm.get('signinemail')?.value;
-    const signInPassword = this.signInForm.get('signinpassword')?.value;
-
-    const storedEmail = localStorage.getItem('email');
-    const storedPassword = localStorage.getItem('password')
-
-    if (signInEmail === storedEmail && signInPassword === storedPassword) {
-     console.log("Authentication sucesss")
-    } else {
-      console.log('Authentication failed');
-    }
-  }
-
 }
