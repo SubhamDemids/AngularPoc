@@ -19,7 +19,8 @@ import { SigninComponent } from './modules/auth/signin/signin.component';
 import { SignupComponent } from './modules/auth/signup/signup.component';
 import { HeaderComponent } from './modules/core/header/header.component';
 import { FooterComponent } from './modules/core/footer/footer.component';
-
+import { ContactListComponent } from './modules/core/components/user-dashboard/contact-list/contact-list.component';
+import {MatTableModule} from '@angular/material/table';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import { FooterComponent } from './modules/core/footer/footer.component';
     SigninComponent,
     SignupComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ContactListComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import { FooterComponent } from './modules/core/footer/footer.component';
     MatTabsModule,
     MatCheckboxModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTableModule
     
   ],
   providers: [],

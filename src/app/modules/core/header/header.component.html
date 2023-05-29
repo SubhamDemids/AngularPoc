@@ -1,1 +1,21 @@
-<p>header works!</p>
+<div style="display: flex; flex-direction: row; justify-content: end; padding-top: 15px;">
+
+    <h1 style="padding-right: 1%;">Welcome!</h1>
+
+    <button mat-button class="custom-button" (click)="togglePopup()">
+    <mat-icon  class="large-icon" style="padding-right: 2%;">account_circle</mat-icon>
+    </button>
+    <div class="popup" *ngIf="isPopupOpen">
+        <ul>
+          <li>
+            <mat-icon>person</mat-icon>
+            <a >My Profile</a></li>
+          <li>
+            <mat-icon>create</mat-icon>
+            <a >Contact List</a></li>
+          <li>
+            <mat-icon>exit_to_app</mat-icon>
+            <a >Sign Out</a></li>
+        </ul>
+      </div>
+</div>

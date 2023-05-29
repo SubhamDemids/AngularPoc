@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  isPopupOpen = false;
 
+  togglePopup() {
+    this.isPopupOpen = !this.isPopupOpen;
+  }
 }
