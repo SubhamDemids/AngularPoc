@@ -31,3 +31,6 @@
     text-decoration: none;
     color: #333;
   }
+  .grey-background {
+    background-color: grey;
+  }

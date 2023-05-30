@@ -1,17 +1,20 @@
-import { Component,OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DataShareService } from '../../service/data-share.service';
+
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent{
-  
+
+
   signInForm!: FormGroup
-  
+  loggedIn: boolean = false;
   isSubmitClicked=false
-  constructor(private formBuilder: FormBuilder,private router: Router) {
+  constructor(private formBuilder: FormBuilder,private router: Router,private dataSharingService:  DataShareService) {
     this.signInForm = this.formBuilder.group({
       email: '',
       password:''
@@ -27,7 +30,7 @@ export class SigninComponent{
     )
   }
   onSignIn(){
- 
+    this.loggedIn = true;
     this.isSubmitClicked = true;
     if(this.signInForm.invalid){
       return;
@@ -39,6 +42,8 @@ export class SigninComponent{
     const storedPassword = localStorage.getItem('password')
 
     if (signInEmail === storedEmail && signInPassword === storedPassword) {
+      this.dataSharingService.sendData(true);
+      
       this.router.navigate(['/contactlist']);
      console.log("Authentication sucesss")
     } else {

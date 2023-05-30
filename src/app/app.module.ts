@@ -21,6 +21,7 @@ import { HeaderComponent } from './modules/core/header/header.component';
 import { FooterComponent } from './modules/core/footer/footer.component';
 import { ContactListComponent } from './modules/core/components/user-dashboard/contact-list/contact-list.component';
 import {MatTableModule} from '@angular/material/table';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +47,8 @@ import {MatTableModule} from '@angular/material/table';
     MatCheckboxModule,
     MatIconModule,
     ReactiveFormsModule,
-    MatTableModule
+    MatTableModule,
+    HttpClientModule
     
   ],
   providers: [],
