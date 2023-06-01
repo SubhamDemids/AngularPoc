@@ -5,7 +5,9 @@
     <button mat-button class="custom-button" (click)="togglePopup()">
     <mat-icon  class="large-icon" style="padding-right: 2%;">account_circle</mat-icon>
     </button>
-    <div class="popup" *ngIf="isPopupOpen">
+
+
+    <div class="popup" *ngIf="isPopupOpen && loggedIn">
         <ul>
           <li>
             <mat-icon>person</mat-icon>
@@ -18,4 +20,5 @@
             <a >Sign Out</a></li>
         </ul>
       </div>
+      
 </div>

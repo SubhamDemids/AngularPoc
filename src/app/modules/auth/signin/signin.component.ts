@@ -42,8 +42,8 @@ export class SigninComponent{
     const storedPassword = localStorage.getItem('password')
 
     if (signInEmail === storedEmail && signInPassword === storedPassword) {
-      this.dataSharingService.sendData(true);
-      
+      //this.dataSharingService.sendData(true);
+      this.dataSharingService.login();
       this.router.navigate(['/contactlist']);
      console.log("Authentication sucesss")
     } else {

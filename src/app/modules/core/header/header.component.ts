@@ -10,11 +10,13 @@ export class HeaderComponent {
 
   loggedIn: boolean = false;
   isPopupOpen = false;
-  
+
   ngOnInit() {
-    this.dataSharingService.dataEmitter.subscribe(data => {
-      this.loggedIn = data;
+  
+    this.dataSharingService.loggedIn$.subscribe(loggedIn => {
+      this.loggedIn = loggedIn;
     });
+    
   }
   togglePopup() {
     this.isPopupOpen = !this.isPopupOpen;
