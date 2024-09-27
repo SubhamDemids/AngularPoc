@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SigninComponent } from './modules/auth/signin/signin.component';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: []
 })
 export class AppComponent {
-  title = 'Test';
+
 }

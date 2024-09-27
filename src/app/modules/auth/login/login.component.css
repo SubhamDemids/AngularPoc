@@ -1,0 +1,17 @@
+.login-page {
+    height: 86%;
+    background-color: #303F9F;
+    overflow: hidden;
+  }
+  
+  mat-card {
+    width: 30%;
+    margin: 1% auto;
+    border-radius: 8px;
+  }
+ 
+  mat-card-content {
+    margin-top: 20px;
+  }
+  
+ 

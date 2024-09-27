@@ -1,0 +1,35 @@
+<form [formGroup]="signInForm"  (ngSubmit)="onSignIn()">
+    <mat-form-field>
+      <input
+        matInput
+        formControlName="email"
+        placeholder="Email/Phone Number"               
+        >                
+      <mat-icon matSuffix>email</mat-icon>
+      <mat-error *ngIf=" signInForm.controls['email'].invalid && signInForm.controls['email'].touched">
+        Email/Phone Number required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        formControlName="password"
+        placeholder="Password"
+        type="password"            
+       >
+      <mat-icon matSuffix>lock</mat-icon>
+      <mat-error *ngIf=" signInForm.controls['password'].hasError('required') && signInForm.controls['email'].touched">
+        Password is required
+      </mat-error>
+      <mat-error *ngIf="isSubmitClicked && signInForm.controls['password'].hasError('incorrectCredentials')">
+        Invalid email or password
+      </mat-error>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      class="login-button"
+      >
+      Sign In
+    </button>
+  </form>
